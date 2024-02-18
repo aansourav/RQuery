@@ -1,16 +1,24 @@
 import axios from "axios";
 import {useQuery} from "@tanstack/react-query";
+import {useState} from "react";
 
-const getProducts = async () => {
-    const response = await axios.get("http://localhost:3000/products");
+const getProducts = async ({queryKey}) => {
+
+    const response = await axios.get(`http://localhost:3000/${queryKey[0]}`);
     return response.data;
 };
 
-export default function ProductList() {
+export default function ProductList({setID}) {
+    const [page, setPage] = useState(1)
     const {data: products, error, isLoading} = useQuery({
         queryKey: ["products"],
-        queryFn: getProducts
+        queryFn: getProducts,
+        retry: false,
     })
+
+    const handleClick = (id) => {
+        setID(id)
+    }
 
     if (isLoading) return <div className="text-3xl text-green-800 font-bold">Fetching products...</div>
     if (error) return <div>An error occurred: {error.message}</div>
@@ -26,6 +34,7 @@ export default function ProductList() {
                             src={product.thumbnail}
                             alt={product.title}/>
                         <p className="text-xl my-3">{product.title}</p>
+                        <button onClick={() => handleClick(product.id)}>Show details</button>
                     </li>
                 ))}
             </ul>
