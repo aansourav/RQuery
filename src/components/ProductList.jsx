@@ -1,5 +1,5 @@
 import axios from "axios";
-import {useQuery} from "@tanstack/react-query";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {useState} from "react";
 
 const getProducts = async ({queryKey}) => {
@@ -10,6 +10,7 @@ const getProducts = async ({queryKey}) => {
 
 export default function ProductList({setID}) {
     const [page, setPage] = useState(1)
+    const queryClient = useQueryClient();
     const {data: products, error, isLoading} = useQuery({
         queryKey: ["products", {page}],
         queryFn: getProducts,
@@ -19,6 +20,18 @@ export default function ProductList({setID}) {
     const handleClick = (id) => {
         setID(id)
     }
+
+    const deleteMutation = useMutation({
+        mutationFn: productId => axios.delete(`http://localhost:3000/products/${productId}`),
+        onSuccess: (data, variables, context) => {
+            queryClient.invalidateQueries(['products'])
+        }
+    })
+
+    const handleDelete = (id) => {
+        deleteMutation.mutate(id);
+    };
+
 
     if (isLoading) return <div className="text-3xl text-green-800 font-bold">Fetching products...</div>
     if (error) return <div>An error occurred: {error.message}</div>
@@ -35,6 +48,7 @@ export default function ProductList({setID}) {
                             alt={product.title}/>
                         <p className="text-xl my-3">{product.title}</p>
                         <button onClick={() => handleClick(product.id)}>Show details</button>
+                        <button onClick={() => handleDelete(product.id)}>Delete</button>
                     </li>
                 ))}
             </ul>

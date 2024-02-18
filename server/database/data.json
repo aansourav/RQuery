@@ -1,22 +1,6 @@
 {
   "products": [
     {
-      "id": "1",
-      "title": "iPhone 9",
-      "description": "An apple mobile which is nothing like apple",
-      "price": 549,
-      "rating": 4.69,
-      "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"
-    },
-    {
-      "id": "2",
-      "title": "iPhone X",
-      "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-      "price": 899,
-      "rating": 4.44,
-      "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
-    },
-    {
       "id": "3",
       "title": "Samsung Universe 9",
       "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
@@ -39,14 +23,6 @@
       "price": 499,
       "rating": 4.09,
       "thumbnail": "https://cdn.dummyjson.com/product-images/5/thumbnail.jpg"
-    },
-    {
-      "id": "6",
-      "title": "MacBook Pro",
-      "description": "MacBook Pro 2021 with mini-LED display may launch between September, November",
-      "price": 1749,
-      "rating": 4.57,
-      "thumbnail": "https://cdn.dummyjson.com/product-images/6/thumbnail.png"
     },
     {
       "id": "7",

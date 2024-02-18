@@ -28,6 +28,7 @@ const ProductDetails = ({id}) => {
                 <p>USD {product.price}</p>
                 <p>{product.rating}/5</p>
             </div>
+            
         </div>
     );
 };
