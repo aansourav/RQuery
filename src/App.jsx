@@ -1,5 +1,11 @@
+import ProductList from './components/ProductList'
+
 function App () {
-  return <>Hello</>
+  return (
+    <>
+      <ProductList />
+    </>
+  )
 }
 
 export default App
